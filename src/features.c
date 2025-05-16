@@ -16,9 +16,9 @@ void helloWorld() {
 }
 
 void dimension(const char *source_path) {
-    unsigned char data;
+    unsigned char *data;
     int w, h, n;
     
-    read_image_data(source_path, data, &w, &h, &n);
+    read_image_data(source_path, &data, &w, &h, &n);
     printf("dimension : %d, %d\n", w, h);
 }
