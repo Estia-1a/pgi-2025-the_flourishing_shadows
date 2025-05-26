@@ -33,3 +33,22 @@ void first_pixel(char *source_path)
 void helloWorld() {
     printf("Hello World !");
 }
+
+void dimension(const char *source_path) {
+    unsigned char *data;
+    int w, h, n;
+    
+    read_image_data(source_path, &data, &w, &h, &n);
+    printf("dimension : %d, %d\n", w, h);
+}
+
+void first_pixel (const char *source_path){
+    unsigned char *data;
+    int w, h, n, r, g, b;
+    
+    read_image_data(source_path, &data, &w, &h, &n);
+    r = data[0];
+    g = data[1];
+    b = data[2];
+    printf("first_pixel : %d, %d, %d\n",r,g,b);
+}
