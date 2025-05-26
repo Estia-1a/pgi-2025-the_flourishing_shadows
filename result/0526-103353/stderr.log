@@ -1,0 +1,53 @@
+In file included from /home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:4:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:9:6: error: conflicting types for ‘dimension’; have ‘void(const char *)’
+    9 | void dimension (const char *source_path);
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:4:6: note: previous declaration of ‘dimension’ with type ‘void(char *)’
+    4 | void dimension (char *source_path);
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:10:6: error: conflicting types for ‘first_pixel’; have ‘void(const char *)’
+   10 | void first_pixel (const char *source_path);
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:6:6: note: previous declaration of ‘first_pixel’ with type ‘void(char *)’
+    6 | void first_pixel (char *source_path);
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: In function ‘first_pixel’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:29:68: error: expected ‘;’ before ‘printf’
+   29 |     read_image_data(source_path, &data, &width, &height, &channels)
+      |                                                                    ^
+      |                                                                    ;
+   30 |     printf("first_pixel : %d, %d, %d",data[0], data[1], data[2]);
+      |     ~~~~~~                                                          
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: At top level:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:37:6: error: conflicting types for ‘dimension’; have ‘void(const char *)’
+   37 | void dimension(const char *source_path) {
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:13:6: note: previous definition of ‘dimension’ with type ‘void(char *)’
+   13 | void dimension(char *source_path)
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:45:6: error: conflicting types for ‘first_pixel’; have ‘void(const char *)’
+   45 | void first_pixel (const char *source_path){
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:24:6: note: previous definition of ‘first_pixel’ with type ‘void(char *)’
+   24 | void first_pixel(char *source_path)
+      |      ^~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+In file included from /home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c:8:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:9:6: error: conflicting types for ‘dimension’; have ‘void(const char *)’
+    9 | void dimension (const char *source_path);
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:4:6: note: previous declaration of ‘dimension’ with type ‘void(char *)’
+    4 | void dimension (char *source_path);
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:10:6: error: conflicting types for ‘first_pixel’; have ‘void(const char *)’
+   10 | void first_pixel (const char *source_path);
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.h:6:6: note: previous declaration of ‘first_pixel’ with type ‘void(char *)’
+    6 | void first_pixel (char *source_path);
+      |      ^~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:107: CMakeFiles/freud.dir/src/main.c.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
