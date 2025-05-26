@@ -52,3 +52,25 @@ void first_pixel (const char *source_path){
     b = data[2];
     printf("first_pixel : %d, %d, %d\n",r,g,b);
 }
+
+void tenth_pixel (const char *source_path){
+    unsigned char *data;
+    int w, h, n, r, g, b;
+    
+    read_image_data(source_path, &data, &w, &h,&n);
+    r = data[27];
+    g = data[28];
+    b = data[29];
+    printf("tenth_pixel : %d, %d, %d\n",r,g,b);
+}
+
+void second_line(const char *source_path) {
+    unsigned char *data;
+    int w, h, n, r, g, b;
+    read_image_data(source_path, &data, &w, &h,&n);
+
+    r = data[3*w];
+    g = data[3*w+1];
+    b = data[3*w+2];
+    printf("second_line : %d, %d, %d\n", r, g, b);
+}
