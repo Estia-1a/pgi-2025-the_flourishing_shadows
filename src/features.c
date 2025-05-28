@@ -10,25 +10,6 @@
  * Your commit messages must contain "#n" with: n = number of the corresponding feature issue.
  * When the feature is totally implemented, your commit message must contain "close #n".
  */
-void dimension(char *source_path) 
-{
-    unsigned char *data;
-    int width, height, channels;
-
-    if (read_image_data(source_path, &data, &width, &height, &channels) != 0) 
-    {
-        printf("dimension: %d, %d\n", width, height);
-    }
-}
-
-void first_pixel(char *source_path) 
-{
-    unsigned char *data;
-    int width, height, channels;
-
-    read_image_data(source_path, &data, &width, &height, &channels)
-    printf("first_pixel : %d, %d, %d",data[0], data[1], data[2]);
-}
 
 void helloWorld() {
     printf("Hello World !");
@@ -75,11 +56,24 @@ void second_line(const char *source_path) {
     printf("second_line: %d, %d, %d\n", r, g, b);
 }
 
-void print_pixel( char *filename, int x, int y ) {
+void print_pixel(const char *filename, int x, int y) {
     unsigned char *data;
-    int w, h, n, r, g, b;
-    pixelRGB *pixel = read_image_data(filename, &data, &w, &h,&n);
+    int w, h, n;
 
-    get_pixel(data, w, h, n, x, y);
-    printf("print_pixel ( %d, %d) : %d, %d, %d)", x, y, pixel->R, pixel->G, pixel->B);
+    int result = read_image_data(filename, &data, &w, &h, &n);
+    
+    if (result != 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+
+    if (x < 0 || x >= w || y < 0 || y >= h) {
+        printf("Erreur: coordonnées hors limites (%d, %d)\n", x, y);
+        return;
+    }
+    
+    pixelRGB *current_pixel = get_pixel(data, w, h, n, x, y);
+    printf("print_pixel (%d, %d): %d, %d, %d\n", 
+           x, y, current_pixel->R, current_pixel->G, current_pixel->B);
+
 }
