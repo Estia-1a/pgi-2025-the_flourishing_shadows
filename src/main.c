@@ -58,9 +58,6 @@ if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
         int y = atoi( configuration.arguments[1] );
         
         print_pixel( configuration.filenames[0], x, y );
-    } else {
-        fprintf(stderr, "Erreur: usage incorrect\n");
-        fprintf(stderr, "Usage: print_pixel <fichier> <x> <y>\n");
     }
 }
   return 0;

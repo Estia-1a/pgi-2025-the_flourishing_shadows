@@ -62,7 +62,7 @@ void print_pixel(const char *filename, int x, int y) {
 
     int result = read_image_data(filename, &data, &w, &h, &n);
     
-    if (result != 0 || data == NULL) {
+    if (result == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
