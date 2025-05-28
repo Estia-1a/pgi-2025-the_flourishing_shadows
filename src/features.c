@@ -73,7 +73,6 @@ void print_pixel(const char *filename, int x, int y) {
     }
     
     pixelRGB *current_pixel = get_pixel(data, w, h, n, x, y);
-    printf("print_pixel (%d, %d): %d, %d, %d\n", 
-           x, y, current_pixel->R, current_pixel->G, current_pixel->B);
+    printf("print_pixel (%d, %d): %d, %d, %d\n",x, y, current_pixel->R, current_pixel->G, current_pixel->B);
 
 }

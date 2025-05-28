@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
   if ( strncmp( configuration.command, "second_line", 13 ) == 0 ) {
     /* second_line() function is defined in feature.h and implemented in feature.c */
     second_line( configuration.filenames[0] );
-
+  }
 if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
     if ( configuration.filenames[0] != NULL && 
          configuration.arguments[0] != NULL && 
@@ -61,6 +61,5 @@ if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
     }
 }
   
-}
 return 0;
 }
