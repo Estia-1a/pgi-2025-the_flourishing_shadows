@@ -299,3 +299,55 @@ void color_red(const char *source_path) {
     
     free(nouvelles_donnees);
 }
+
+void color_green(const char *source_path){
+}
+
+void color_blue(const char *source_path){
+}
+
+void color_gray(const char *source_path){
+    unsigned char *data;
+    int w, h, n;
+    unsigned char r=0, g=0, b=0;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+
+    
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+
+    for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            
+            pixelRGB *current_pixel = get_pixel(data,w,h,n,colonne,ligne);
+
+            r=current_pixel->R;
+            g=current_pixel->G;
+            b=current_pixel->B;
+
+            nouvelles_donnees[pos] = (r + g + b) / 3;
+            nouvelles_donnees[pos + 1] = (r + g + b) / 3;
+            nouvelles_donnees[pos + 2] = (r + g + b) / 3;
+        }
+    }
+    
+    write_image_data("image_out.jpeg", nouvelles_donnees, w, h);
+    
+    free(nouvelles_donnees);
+}
+
+void color_invert(const char *source_path){
+}
+
+void color_gray_luminance(const char *source_path){
+}
