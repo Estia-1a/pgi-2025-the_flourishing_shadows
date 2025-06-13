@@ -1,0 +1,46 @@
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: In function ‘color_gray_luminance’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:405:49: error: ‘colonne’ undeclared (first use in this function)
+  405 |             value = 0.21 * get_pixel(data,w,h,n,colonne,ligne)->R + 0.72 * get_pixel(data,w,h,n,colonne, ligne)->G + 0.07 * get_pixel(data,w,h,n,colonne,ligne)->B;
+      |                                                 ^~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:405:49: note: each undeclared identifier is reported only once for each function it appears in
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:405:57: error: ‘ligne’ undeclared (first use in this function)
+  405 |             value = 0.21 * get_pixel(data,w,h,n,colonne,ligne)->R + 0.72 * get_pixel(data,w,h,n,colonne, ligne)->G + 0.07 * get_pixel(data,w,h,n,colonne,ligne)->B;
+      |                                                         ^~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:406:31: error: ‘pos’ undeclared (first use in this function)
+  406 |             nouvelles_donnees[pos] = value;
+      |                               ^~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: At top level:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:410:5: error: expected identifier or ‘(’ before ‘}’ token
+  410 |     }
+      |     ^
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:411:22: error: expected declaration specifiers or ‘...’ before string constant
+  411 |     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+      |                      ^~~~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:411:39: error: unknown type name ‘nouvelles_donnees’
+  411 |     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+      |                                       ^~~~~~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:411:58: error: unknown type name ‘w’
+  411 |     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+      |                                                          ^
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:411:61: error: unknown type name ‘h’
+  411 |     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+      |                                                             ^
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:412:5: warning: data definition has no type or storage class
+  412 |     free(nouvelles_donnees);
+      |     ^~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:412:5: warning: type defaults to ‘int’ in declaration of ‘free’ [-Wimplicit-int]
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:412:5: warning: parameter names (without types) in function declaration
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:412:5: error: conflicting types for ‘free’; have ‘int()’
+In file included from /home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:4:
+/usr/include/stdlib.h:687:13: note: previous declaration of ‘free’ with type ‘void(void *)’
+  687 | extern void free (void *__ptr) __THROW;
+      |             ^~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:414:1: error: expected identifier or ‘(’ before ‘}’ token
+  414 | }
+      | ^
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
