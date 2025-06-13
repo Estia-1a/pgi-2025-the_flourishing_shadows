@@ -370,12 +370,20 @@ void color_invert(const char *source_path){
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
     
+
+}
+
+void color_gray_luminance(const char *source_path) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
     
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
@@ -394,4 +402,13 @@ void color_invert(const char *source_path){
     write_image_data("image.jpeg", nouvelles_donnees, w, h);
     
     free(nouvelles_donnees);
+            value = 0.21 * get_pixel(data,w,h,n,colonne,ligne)->R + 0.72 * get_pixel(data,w,h,n,colonne, ligne)->G + 0.07 * get_pixel(data,w,h,n,colonne,ligne)->B;
+            nouvelles_donnees[pos] = value;
+            nouvelles_donnees[pos + 1] = value;
+            nouvelles_donnees[pos + 2] = value;
+        }
+    }
+    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+    free(nouvelles_donnees);
+
 }
