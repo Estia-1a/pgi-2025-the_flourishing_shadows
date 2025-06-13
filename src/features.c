@@ -299,3 +299,65 @@ void color_red(const char *source_path) {
     
     free(nouvelles_donnees);
 }
+
+void color_green(const char *source_path) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+	
+    for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            nouvelles_donnees[pos] = 0;
+            nouvelles_donnees[pos + 1] = data[pos+1];
+            nouvelles_donnees[pos + 2] = 0;
+        }
+    }
+    
+    write_image_data("image.jpeg", nouvelles_donnees, w, h);
+    
+    free(nouvelles_donnees);
+}
+
+void color_blue(const char *source_path) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+	
+    for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            nouvelles_donnees[pos] = 0;
+            nouvelles_donnees[pos + 1] = 0;
+            nouvelles_donnees[pos + 2] = data[pos+2];
+        }
+    }
+    
+    write_image_data("image.jpeg", nouvelles_donnees, w, h);
+    
+    free(nouvelles_donnees);
+}
