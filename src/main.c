@@ -62,5 +62,18 @@ if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
 }
   
 }
+
+
+
+
+
+
+
+if (strcmp(configuration.command, "min_pixel")==0){
+  if (configuration.filenames[0] != NULL){
+    min_pixel(configuration.filenames[0]);
+  }
+}
+
 return 0;
 }
