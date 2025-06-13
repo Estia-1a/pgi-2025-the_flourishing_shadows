@@ -1,5 +1,7 @@
 #include <estia-image.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include "features.h"
 #include "utils.h"
@@ -79,18 +81,19 @@ void print_pixel(const char *filename, int x, int y) {
 }
 
 
-void min_pixel(const char *filename) {
+
+int* min_pixel(const char *filename) {
     unsigned char *data;
     int w,h,n;
- 
+    int* resultat=malloc(2);
     int result = read_image_data(filename,&data,&w,&h,&n);
  
     if (result == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
-        return;
+        
     }
  
-    int sum=0, sum_min=765, x_min=0, y_min=0;
+    int sum=0, sum_min=765, x_min=0, y_min=0; 
     unsigned char r_min=0, g_min=0, b_min=0;
  
     for(int y=0;y<h; y++)
@@ -102,7 +105,7 @@ void min_pixel(const char *filename) {
             if (current_pixel==NULL)
             {
                 printf("Erreur");
-                return;
+                
             }
  
             sum = current_pixel->R + current_pixel->G + current_pixel->B;  
@@ -118,19 +121,22 @@ void min_pixel(const char *filename) {
             }
         }
     }
+    resultat[0]=x_min;
+    resultat[1]=y_min;
     printf("min_pixel (%d, %d): %d, %d, %d\n", x_min, y_min, r_min, g_min, b_min);
+    return(resultat);
 }
 
-
-void max_pixel(const char *filename) {
+int* max_pixel(const char *filename) {
     unsigned char *data;
+    int* resultat=malloc(2);
     int w,h,n;
 
     int result = read_image_data(filename,&data,&w,&h,&n);
  
     if (result == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
-        return;
+        
     }
 
     int somme=0, somme_max=-1, x_max=0, y_max=0;
@@ -145,7 +151,7 @@ void max_pixel(const char *filename) {
             if (current_pixel==NULL)
             {
                 printf("Erreur");
-                return;
+                
             }
 
             somme = current_pixel->R + current_pixel->G + current_pixel->B;  
@@ -161,5 +167,107 @@ void max_pixel(const char *filename) {
             }
         }
     }
+    resultat[0]=x_max;
+    resultat[1]=y_max;
     printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
+    return (resultat);
 }
+
+
+
+int max_component(const char *source_path, const char *pixel) {
+    unsigned char *data;
+    int w, h, n, max = 0;
+    int x_max = 0, y_max = 0;
+    int result = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (result == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        
+    }
+    
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {       
+            pixelRGB *current_pixel = get_pixel(data, w, h, n, x, y);
+            
+            int current_value = 0;
+            if (strcmp(pixel, "R") == 0) {
+                current_value = current_pixel->R;
+            } else if (strcmp(pixel, "G") == 0) {
+                current_value = current_pixel->G;
+            } else if (strcmp(pixel, "B") == 0) {
+                current_value = current_pixel->B;
+            }
+            
+            if (current_value > max) {
+                max = current_value;
+                x_max = x;
+                y_max = y;
+            }
+        }
+    }
+    
+    printf("max_component %s (%d, %d): %d\n", pixel, x_max, y_max, max);
+    return(max);
+}
+
+int min_component(const char *source_path, const char *pixel) {
+    unsigned char *data;
+    int w, h, n, min = 256;
+    int x_min = 0, y_min = 0;
+    int result = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (result == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        
+    }
+    
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {       
+            pixelRGB *current_pixel = get_pixel(data, w, h, n, x, y);
+            
+            int current_value = 0;
+            if (strcmp(pixel, "R") == 0) {
+                current_value = current_pixel->R;
+            } else if (strcmp(pixel, "G") == 0) {
+                current_value = current_pixel->G;
+            } else if (strcmp(pixel, "B") == 0) {
+                current_value = current_pixel->B;
+            }
+            
+            if (current_value < min) {
+                min = current_value;
+                x_min = x;
+                y_min = y;
+            }
+        }
+    }
+    
+    printf("min_component %s (%d, %d): %d\n", pixel, x_min, y_min, min);
+    return(min);
+}
+
+void stat_report(const char *source_path) {
+    FILE *stat;
+    int *mxpixel;
+    int *mnpixel;
+    int maxxp = 0,maxyp = 0, minxp = 0,minyp = 0, maxcR = 0, maxcG = 0, maxcB = 0, mincR = 0, mincG = 0, mincB = 0;
+
+    stat = fopen("stat.txt","w");
+    mxpixel = max_pixel(source_path);
+    mnpixel = min_pixel(source_path);
+    maxcR = max_component(source_path,"R");
+    maxcG = max_component(source_path,"G");
+    maxcB = max_component(source_path,"B");
+    mincR = min_component(source_path,"R");
+    mincB = min_component(source_path,"B");
+    mincG = min_component(source_path,"G");
+    maxxp = mxpixel[0];  
+    maxyp = mxpixel[1];
+    minxp = mnpixel[0];
+    minyp = mnpixel[1];
+    
+    fprintf(stat, "%d,%d\n %d,%d\n %d\n %d\n %d\n %d\n %d\n %d\n",maxxp,maxyp,minxp,minyp,maxcR,maxcB,maxcG,mincR,mincG,mincB);
+    fclose(stat);
+}
+

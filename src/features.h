@@ -7,6 +7,9 @@ void first_pixel (const char *source_path);
 void tenth_pixel (const char *source_path);
 void second_line(const char *source_path);
 void print_pixel(const char *filename, int x, int y );
-void max_pixel(const char *filename);
-void min_pixel(const char *filename);
+int* max_pixel(const char *filename);
+int* min_pixel(const char *filename);
+int max_component(const char *source_path, const char *pixel);
+int min_component(const char *source_path, const char *pixel);
+void stat_report(const char *source_path);
 #endif
