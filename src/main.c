@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     /* second_line() function is defined in feature.h and implemented in feature.c */
     second_line( configuration.filenames[0] );
   }
-if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
+  if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
     if ( configuration.filenames[0] != NULL && 
          configuration.arguments[0] != NULL && 
          configuration.arguments[1] != NULL ) {
@@ -58,8 +58,37 @@ if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
         int y = atoi( configuration.arguments[1] );
         
         print_pixel( configuration.filenames[0], x, y );
-    }
+      }
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  if ( strncmp( configuration.command, "max_component", 15 ) == 0 ) {
+  /* max_component() function is defined in feature.h and implemented in feature.c */
+  max_component( configuration.filenames[0], configuration.arguments[0] );
 }
   
+  if ( strncmp( configuration.command, "min_component", 15 ) == 0 ) {
+  /* min_component() function is defined in feature.h and implemented in feature.c */
+  min_component( configuration.filenames[0], configuration.arguments[0] );
+}
+  if ( strncmp( configuration.command, "stat_report", 16 ) == 0 ) {
+    /* second_line() function is defined in feature.h and implemented in feature.c */
+    stat_report( configuration.filenames[0] );
+  }
 return 0;
 }
