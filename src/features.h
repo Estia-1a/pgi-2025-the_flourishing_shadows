@@ -15,4 +15,7 @@ void stat_report(const char *source_path);
 void color_red(const char *source_path);
 void color_green(const char *source_path);
 void color_blue(const char *source_path);
+void color_gray(const char *source_path);
+void color_invert(const char *source_path);
+void color_gray_luminance(const char *source_path);
 #endif
