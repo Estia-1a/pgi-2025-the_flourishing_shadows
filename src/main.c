@@ -92,14 +92,15 @@ if (strcmp(configuration.command, "min_pixel")==0){
   if ( strncmp( configuration.command, "color_blue", 10 ) == 0 ) {
     color_blue( configuration.filenames[0] );
   }
-  if ( strncmp( configuration.command, "color_grey", 12 ) == 0 ) {
+  if ( strncmp( configuration.command, "color_gray", 12 ) == 0 ) {
     color_gray( configuration.filenames[0] );
   }
   if ( strncmp( configuration.command, "color_invert", 12 ) == 0 ) {
     color_invert( configuration.filenames[0] );
   }
-  if ( strncmp( configuration.command, "color_grey_luminance", 12 ) == 0 ) {
+  if ( strncmp( configuration.command, "color_gray_luminance", 12 ) == 0 ) {
     color_gray_luminance( configuration.filenames[0] );
   }
 return 0;
 }
+  
