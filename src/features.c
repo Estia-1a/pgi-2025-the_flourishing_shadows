@@ -73,9 +73,54 @@ void print_pixel(const char *filename, int x, int y) {
     }
     
     pixelRGB *current_pixel = get_pixel(data, w, h, n, x, y);
-    printf("print_pixel (%d, %d): %d, %d, %d\n",x, y, current_pixel->R, current_pixel->G, current_pixel->B);
+    printf("print_pixel (%d, %d): %d, %d, %d\n", 
+           x, y, current_pixel->R, current_pixel->G, current_pixel->B);
 
 }
+
+
+void min_pixel(const char *filename) {
+    unsigned char *data;
+    int w,h,n;
+ 
+    int result = read_image_data(filename,&data,&w,&h,&n);
+ 
+    if (result == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+ 
+    int sum=0, sum_min=765, x_min=0, y_min=0;
+    unsigned char r_min=0, g_min=0, b_min=0;
+ 
+    for(int y=0;y<h; y++)
+    {
+        for(int x=0;x<w;x++)
+        {
+            pixelRGB *current_pixel = get_pixel(data,w,h,n,x,y);
+ 
+            if (current_pixel==NULL)
+            {
+                printf("Erreur");
+                return;
+            }
+ 
+            sum = current_pixel->R + current_pixel->G + current_pixel->B;  
+           
+            if(sum<sum_min)
+            {
+                sum_min=sum;
+                x_min=x;
+                y_min=y;
+                r_min=current_pixel->R;
+                g_min=current_pixel->G;
+                b_min=current_pixel->B;
+            }
+        }
+    }
+    printf("min_pixel (%d, %d): %d, %d, %d\n", x_min, y_min, r_min, g_min, b_min);
+}
+
 
 void max_pixel(const char *filename) {
     unsigned char *data;
