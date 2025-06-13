@@ -60,6 +60,11 @@ if ( strcmp( configuration.command, "print_pixel" ) == 0 ) {
         print_pixel( configuration.filenames[0], x, y );
     }
 }
+if (strcmp(configuration.command, "max_pixel")==0){
+  if (configuration.filenames[0] != NULL){
+    max_pixel(configuration.filenames[0]);
+  }
+}
   
 return 0;
 }
