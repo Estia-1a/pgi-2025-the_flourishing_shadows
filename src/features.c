@@ -80,8 +80,6 @@ void print_pixel(const char *filename, int x, int y) {
 
 }
 
-
-
 int* min_pixel(const char *filename) {
     unsigned char *data;
     int w,h,n;
@@ -267,7 +265,10 @@ void stat_report(const char *source_path) {
     minxp = mnpixel[0];
     minyp = mnpixel[1];
     
-    fprintf(stat, "%d,%d\n %d,%d\n %d\n %d\n %d\n %d\n %d\n %d\n",maxxp,maxyp,minxp,minyp,maxcR,maxcB,maxcG,mincR,mincG,mincB);
+    fprintf(stat, "%d,%d\n%d,%d\n%d\n%d\n%d\n%d\n%d\n%d\n",maxxp,maxyp,minxp,minyp,maxcR,maxcB,maxcG,mincR,mincG,mincB);
     fclose(stat);
 }
 
+void color_red(const char *source_path) {
+    
+}

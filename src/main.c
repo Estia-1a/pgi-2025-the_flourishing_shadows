@@ -61,22 +61,6 @@ int main(int argc, char **argv) {
       }
   }
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   if ( strncmp( configuration.command, "max_component", 15 ) == 0 ) {
   /* max_component() function is defined in feature.h and implemented in feature.c */
   max_component( configuration.filenames[0], configuration.arguments[0] );
@@ -91,8 +75,6 @@ if (strcmp(configuration.command, "min_pixel")==0){
     min_pixel(configuration.filenames[0]);
   }
 }
-
-  
   if ( strncmp( configuration.command, "min_component", 15 ) == 0 ) {
   /* min_component() function is defined in feature.h and implemented in feature.c */
   min_component( configuration.filenames[0], configuration.arguments[0] );
