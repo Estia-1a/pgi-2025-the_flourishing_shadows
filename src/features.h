@@ -12,4 +12,5 @@ int* min_pixel(const char *filename);
 int max_component(const char *source_path, const char *pixel);
 int min_component(const char *source_path, const char *pixel);
 void stat_report(const char *source_path);
+void color_red(const_char *sourcepath);
 #endif

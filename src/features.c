@@ -271,3 +271,6 @@ void stat_report(const char *source_path) {
     fclose(stat);
 }
 
+void color_red(const_char *sourcepath){
+}
+
