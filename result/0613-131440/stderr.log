@@ -1,0 +1,61 @@
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:81:1: error: version control conflict marker in file
+   81 | <<<<<<< HEAD
+      | ^~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:183:9: error: invalid suffix "b7888e88fbe7be95b879c0ab5c7639605e2d3a8" on integer constant
+  183 | >>>>>>> 5b7888e88fbe7be95b879c0ab5c7639605e2d3a8
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: In function ‘min_component’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:255:9: warning: ‘return’ with no value, in function returning non-void
+  255 |         return;
+      |         ^~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:247:5: note: declared here
+  247 | int min_component(const char *source_path, const char *pixel) {
+      |     ^~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: In function ‘stat_report’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:286:12: warning: implicit declaration of function ‘max_pixel’; did you mean ‘get_pixel’? [-Wimplicit-function-declaration]
+  286 |     maxp = max_pixel(source_path);
+      |            ^~~~~~~~~
+      |            get_pixel
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:287:12: warning: implicit declaration of function ‘min_pixel’; did you mean ‘get_pixel’? [-Wimplicit-function-declaration]
+  287 |     minp = min_pixel(source_path);
+      |            ^~~~~~~~~
+      |            get_pixel
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:288:13: warning: implicit declaration of function ‘max_component’; did you mean ‘min_component’? [-Wimplicit-function-declaration]
+  288 |     maxcR = max_component(source_path,"R");
+      |             ^~~~~~~~~~~~~
+      |             min_component
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:297:5: warning: implicit declaration of function ‘fclocle’; did you mean ‘fclose’? [-Wimplicit-function-declaration]
+  297 |     fclocle(stat);
+      |     ^~~~~~~
+      |     fclose
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: At top level:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:300:1: error: version control conflict marker in file
+  300 | >>>>>>> 5b7888e88fbe7be95b879c0ab5c7639605e2d3a8
+      | ^~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:300:9: error: invalid suffix "b7888e88fbe7be95b879c0ab5c7639605e2d3a8" on integer constant
+  300 | >>>>>>> 5b7888e88fbe7be95b879c0ab5c7639605e2d3a8
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c: In function ‘stat_report’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/features.c:295:5: warning: ignoring return value of ‘fopen’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  295 |     fopen("stat.txt","w");
+      |     ^~~~~~~~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c: In function ‘main’:
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c:82:3: warning: implicit declaration of function ‘max_component’ [-Wimplicit-function-declaration]
+   82 |   max_component( configuration.filenames[0], configuration.arguments[0] );
+      |   ^~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c:86:5: warning: implicit declaration of function ‘max_pixel’; did you mean ‘get_pixel’? [-Wimplicit-function-declaration]
+   86 |     max_pixel(configuration.filenames[0]);
+      |     ^~~~~~~~~
+      |     get_pixel
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c:92:3: warning: implicit declaration of function ‘min_component’ [-Wimplicit-function-declaration]
+   92 |   min_component( configuration.filenames[0], configuration.arguments[0] );
+      |   ^~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_flourishing_shadows/pgi-2025-the_flourishing_shadows/src/main.c:96:5: warning: implicit declaration of function ‘stat_report’ [-Wimplicit-function-declaration]
+   96 |     stat_report( configuration.filenames[0] );
+      |     ^~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
