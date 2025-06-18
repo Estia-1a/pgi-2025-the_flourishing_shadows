@@ -596,3 +596,114 @@ void rotate_acw(const char *source_path){
     
     free(nouvelles_donnees);   
 }
+
+void mirror_horizontal(const char *source_path){
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    unsigned char value = 0;
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+
+    int nvh=w;
+    int nvw=h;
+
+     for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            int nvcolonne=h-1-colonne;
+            int nvligne=w-1-ligne;
+            int nvpos=(nvligne*nvw+nvcolonne)*3;
+            nouvelles_donnees[nvpos] = data[pos];
+            nouvelles_donnees[nvpos + 1] = data[pos+1];
+            nouvelles_donnees[nvpos + 2] = data[pos+2];
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
+    
+    free(nouvelles_donnees);   
+}
+
+void mirror_vertical(const char *source_path){
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    unsigned char value = 0;
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+
+    int nvh=w;
+    int nvw=h;
+
+     for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            int nvcolonne=h-1-colonne;
+            int nvligne=ligne;
+            int nvpos=(nvligne*nvw+nvcolonne)*3;
+            nouvelles_donnees[nvpos] = data[pos];
+            nouvelles_donnees[nvpos + 1] = data[pos+1];
+            nouvelles_donnees[nvpos + 2] = data[pos+2];
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
+    
+    free(nouvelles_donnees);   
+}
+
+void mirror_total(const char *source_path){
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    unsigned char value = 0;
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+
+    int nvh=w;
+    int nvw=h;
+
+     for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+            
+            int nvcolonne=h-1-colonne;
+            int nvligne=w-1-ligne;
+            int nvpos=(nvligne*nvw+nvcolonne)*3;
+            nouvelles_donnees[nvpos] = data[pos];
+            nouvelles_donnees[nvpos + 1] = data[pos+1];
+            nouvelles_donnees[nvpos + 2] = data[pos+2];
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
+    
+    free(nouvelles_donnees);   
+}
