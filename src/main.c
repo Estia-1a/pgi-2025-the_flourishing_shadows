@@ -104,6 +104,13 @@ if (strcmp(configuration.command, "min_pixel")==0){
   if ( strncmp( configuration.command, "color_desaturate", 12 ) == 0 ) {
   color_desaturate( configuration.filenames[0] );
 }
+if ( strncmp( configuration.command, "rotate_cw", 12 ) == 0 ) {
+  rotate_cw( configuration.filenames[0] );
+}
+if ( strncmp( configuration.command, "rotate_acw", 12 ) == 0 ) {
+  rotate_acw( configuration.filenames[0] );
+}
+
 return 0;
 }
   

@@ -21,4 +21,6 @@ void color_gray_luminance(const char *source_path);
 int max(int R,int G,int B);
 int min(int R,int G,int B);
 void color_desaturate(const char *source_path);
+void rotate_cw(const char *source_path);
+void rotate_acw(const char *source_path);
 #endif
