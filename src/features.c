@@ -533,7 +533,6 @@ void rotate_cw(const char *source_path){
     }
 
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
@@ -570,7 +569,6 @@ void rotate_acw(const char *source_path){
     }
 
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
@@ -597,7 +595,7 @@ void rotate_acw(const char *source_path){
     free(nouvelles_donnees);   
 }
 
-void mirror_horizontal(const char *source_path){
+void mirror_vertical(const char *source_path){
     unsigned char *data;
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
@@ -607,7 +605,6 @@ void mirror_horizontal(const char *source_path){
     }
 
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
@@ -620,7 +617,7 @@ void mirror_horizontal(const char *source_path){
         for (int colonne = 0; colonne < w; colonne++) {
             int pos = (ligne * w + colonne) * 3;
             
-            int nvcolonne=h-1-colonne;
+            int nvcolonne=colonne;
             int nvligne=w-1-ligne;
             int nvpos=(nvligne*nvw+nvcolonne)*3;
             nouvelles_donnees[nvpos] = data[pos];
@@ -634,7 +631,7 @@ void mirror_horizontal(const char *source_path){
     free(nouvelles_donnees);   
 }
 
-void mirror_vertical(const char *source_path){
+void mirror_horizontal(const char *source_path){
     unsigned char *data;
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
@@ -644,7 +641,6 @@ void mirror_vertical(const char *source_path){
     }
 
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
@@ -681,7 +677,6 @@ void mirror_total(const char *source_path){
     }
 
     unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    unsigned char value = 0;
     if (nouvelles_donnees == NULL) {
         printf("pas assez de place\n");
         return;
