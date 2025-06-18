@@ -18,4 +18,7 @@ void color_blue(const char *source_path);
 void color_gray(const char *source_path);
 void color_invert(const char *source_path);
 void color_gray_luminance(const char *source_path);
+int max(int R,int G,int B);
+int min(int R,int G,int B);
+void color_desaturate(const char *source_path);
 #endif

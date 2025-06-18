@@ -101,6 +101,9 @@ if (strcmp(configuration.command, "min_pixel")==0){
   if ( strncmp( configuration.command, "color_gray_luminance", 12 ) == 0 ) {
     color_gray_luminance( configuration.filenames[0] );
   }
+  if ( strncmp( configuration.command, "color_desaturate", 12 ) == 0 ) {
+  color_desaturate( configuration.filenames[0] );
+}
 return 0;
 }
   

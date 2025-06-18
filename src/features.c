@@ -463,3 +463,63 @@ void color_gray_luminance(const char *source_path) {
     free(nouvelles_donnees);
     return;
 }
+int max (int R,int G,int B) {
+    if ((R < G)&&(B < G)) {
+        return(G);
+    }
+    if ((G < R)&&(B < R)){
+        return(R);
+    }
+    return(B);
+}
+
+int min (int R,int G,int B) {
+    if ((R > G)&&(B > G)) {
+        return(G);
+    }
+    if ((G > R)&&(B > R)) {
+        return(R);
+    }
+    return(B);
+}
+
+void color_desaturate(const char *source_path) {
+    unsigned char *data;
+    int w, h, n;
+    unsigned char r=0, g=0, b=0;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    int new_val = 0;
+
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    if (nouvelles_donnees == NULL) {
+        printf("pas assez de place\n");
+        return;
+    }
+
+    for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w; colonne++) {
+            int pos = (ligne * w + colonne) * 3;
+
+            pixelRGB *current_pixel = get_pixel(data,w,h,n,colonne,ligne);
+            r = current_pixel->R;
+            g = current_pixel->G;
+            b = current_pixel->B;
+
+            new_val = ((min(r, g, b) + max(r, g, b)) / 2);
+            nouvelles_donnees[pos] = new_val;
+            nouvelles_donnees[pos + 1] = new_val;
+            nouvelles_donnees[pos + 2] = new_val; 
+
+        }
+    }
+    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+    free(nouvelles_donnees);
+    return;
+    
+}
+
