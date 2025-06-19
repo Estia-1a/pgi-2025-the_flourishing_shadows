@@ -12,7 +12,7 @@
  * Your commit messages must contain "#n" with: n = number of the corresponding feature issue.
  * When the feature is totally implemented, your commit message must contain "close #n".
  */
-
+int resultat[2];
 void helloWorld() {
     printf("Hello World !");
 }
@@ -83,7 +83,7 @@ void print_pixel(const char *filename, int x, int y) {
 int* min_pixel(const char *filename) {
     unsigned char *data;
     int w,h,n;
-    int* resultat=malloc(2);
+
     int result = read_image_data(filename,&data,&w,&h,&n);
  
     if (result == 0 || data == NULL) {
@@ -127,7 +127,6 @@ int* min_pixel(const char *filename) {
 
 int* max_pixel(const char *filename) {
     unsigned char *data;
-    int* resultat=malloc(2);
     int w,h,n;
 
     int result = read_image_data(filename,&data,&w,&h,&n);
@@ -278,20 +277,17 @@ void color_red(const char *source_path) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
-    
-	unsigned char nouvelles_donnees[w * h * 3];
 
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
             int pos = (ligne * w + colonne) * 3;
             
-            nouvelles_donnees[pos] = data[pos];
-            nouvelles_donnees[pos + 1] = 0;
-            nouvelles_donnees[pos + 2] = 0;
+            
+            data[pos + 1] = 0;
+            data[pos + 2] = 0;
         }
     }
-    
-    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+    write_image_data("image_out.bmp", data, w, h);
 }
 
 void color_green(const char *source_path) {
@@ -303,20 +299,16 @@ void color_green(const char *source_path) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
-    
-    unsigned char nouvelles_donnees[w * h * 3];
-	
     for (int ligne = 0; ligne < h; ligne++) {
-        for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
-            
-            nouvelles_donnees[pos] = 0;
-            nouvelles_donnees[pos + 1] = data[pos+1];
-            nouvelles_donnees[pos + 2] = 0;
-        }
+    for (int colonne = 0; colonne < w; colonne++) {
+        int pos = (ligne * w + colonne) * 3;
+        
+        
+        data[pos + 1] = 0;
+        data[pos + 2] = 0;
     }
-    
-    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+}
+write_image_data("image_out.bmp", data, w, h);
     
 }
 
@@ -329,56 +321,47 @@ void color_blue(const char *source_path) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
-    
-    unsigned char nouvelles_donnees[w * h * 3];
-	
     for (int ligne = 0; ligne < h; ligne++) {
-        for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
-            
-            nouvelles_donnees[pos] = 0;
-            nouvelles_donnees[pos + 1] = 0;
-            nouvelles_donnees[pos + 2] = data[pos+2];
-        }
+    for (int colonne = 0; colonne < w; colonne++) {
+        int pos = (ligne * w + colonne) * 3;
+        
+        
+        data[pos + 1] = 0;
+        data[pos + 2] = 0;
     }
-    
-    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
+}
+write_image_data("image_out.bmp", data, w, h);
 
 }
 
 void color_gray(const char *source_path){
     unsigned char *data;
     int w, h, n;
-    unsigned char r=0, g=0, b=0;
+    unsigned char r, g, b;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
-
     
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
     
-    unsigned char nouvelles_donnees[w * h * 3];
-
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
+            pixelRGB *current_pixel = get_pixel(data, w, h, n, colonne, ligne);
             
+            r = current_pixel->R;
+            g = current_pixel->G;
+            b = current_pixel->B;
             
-            pixelRGB *current_pixel = get_pixel(data,w,h,n,colonne,ligne);
-
-            r=current_pixel->R;
-            g=current_pixel->G;
-            b=current_pixel->B;
-
-            nouvelles_donnees[pos] = (r + g + b) / 3;
-            nouvelles_donnees[pos + 1] = (r + g + b) / 3;
-            nouvelles_donnees[pos + 2] = (r + g + b) / 3;
+            unsigned char valeur_grise = (r + g + b) / 3;
+            
+            current_pixel->R = valeur_grise;
+            current_pixel->G = valeur_grise;
+            current_pixel->B = valeur_grise;
         }
     }
     
-    write_image_data("image_out.jpeg", nouvelles_donnees, w, h);
-    
+    write_image_data("image_out.jpeg", data, w, h);
 }
 
 void color_invert(const char *source_path){
@@ -404,7 +387,7 @@ void color_invert(const char *source_path){
     
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
     
-    }
+}
 
 void color_gray_luminance(const char *source_path) {
     unsigned char *data;
@@ -430,24 +413,19 @@ void color_gray_luminance(const char *source_path) {
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
     return;
 }
-int max (int R,int G,int B) {
-    if ((R < G)&&(B < G)) {
-        return(G);
-    }
-    if ((G < R)&&(B < R)){
-        return(R);
-    }
-    return(B);
+
+int max(int R, int G, int B) {
+    int maximum = R;
+    if (G > maximum) maximum = G;
+    if (B > maximum) maximum = B;
+    return maximum;
 }
 
-int min (int R,int G,int B) {
-    if ((R > G)&&(B > G)) {
-        return(G);
-    }
-    if ((G > R)&&(B > R)) {
-        return(R);
-    }
-    return(B);
+int min(int R, int G, int B) {
+    int minimum = R;
+    if (G < minimum) minimum = G;
+    if (B < minimum) minimum = B;
+    return minimum;
 }
 
 void color_desaturate(const char *source_path) {
@@ -550,91 +528,77 @@ void mirror_vertical(const char *source_path){
     unsigned char *data;
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
-
-    unsigned char nouvelles_donnees[w * h * 3];
-
-    int nvh=w;
-    int nvw=h;
-
-     for (int ligne = 0; ligne < h; ligne++) {
+    for (int ligne = 0; ligne < h / 2; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
+
+            pixelRGB *pixel_haut = get_pixel(data, w, h, n, colonne, ligne);
+            pixelRGB *pixel_bas = get_pixel(data, w, h, n, colonne, h - 1 - ligne);
             
-            int nvcolonne=colonne;
-            int nvligne=w-1-ligne;
-            int nvpos=(nvligne*nvw+nvcolonne)*3;
-            nouvelles_donnees[nvpos] = data[pos];
-            nouvelles_donnees[nvpos + 1] = data[pos+1];
-            nouvelles_donnees[nvpos + 2] = data[pos+2];
+            pixelRGB temp = *pixel_haut;
+            *pixel_haut = *pixel_bas;
+            *pixel_bas = temp;
         }
     }
     
-    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
+    write_image_data("image_out.bmp", data, w, h);
 }
 
 void mirror_horizontal(const char *source_path){
     unsigned char *data;
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
 
-    unsigned char nouvelles_donnees[w * h * 3];
-    int nvh=w;
-    int nvw=h;
+    for (int ligne = 0; ligne < h; ligne++) {
+        for (int colonne = 0; colonne < w / 2; colonne++) {
+            pixelRGB *pixel_gauche = get_pixel(data, w, h, n, colonne, ligne);
+            pixelRGB *pixel_droite = get_pixel(data, w, h, n, w - 1 - colonne, ligne);
 
-     for (int ligne = 0; ligne < h; ligne++) {
-        for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
-            
-            int nvcolonne=h-1-colonne;
-            int nvligne=ligne;
-            int nvpos=(nvligne*nvw+nvcolonne)*3;
-            nouvelles_donnees[nvpos] = data[pos];
-            nouvelles_donnees[nvpos + 1] = data[pos+1];
-            nouvelles_donnees[nvpos + 2] = data[pos+2];
+            pixelRGB temp = *pixel_gauche;
+            *pixel_gauche = *pixel_droite;
+            *pixel_droite = temp;
         }
     }
     
-    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-       
+    write_image_data("image_out.bmp", data, w, h);
 }
 
 void mirror_total(const char *source_path){
     unsigned char *data;
     int w, h, n;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
 
-    unsigned char nouvelles_donnees[w * h * 3];
-
-    int nvh=w;
-    int nvw=h;
-
-     for (int ligne = 0; ligne < h; ligne++) {
-        for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
-            
-            int nvcolonne=h-1-colonne;
-            int nvligne=w-1-ligne;
-            int nvpos=(nvligne*nvw+nvcolonne)*3;
-            nouvelles_donnees[nvpos] = data[pos];
-            nouvelles_donnees[nvpos + 1] = data[pos+1];
-            nouvelles_donnees[nvpos + 2] = data[pos+2];
-        }
+    int total_pixels = w * h;
+    for (int i = 0; i < total_pixels / 2; i++) {
+        int ligne1 = i / w;
+        int colonne1 = i % w;
+        
+        int ligne2 = h - 1 - ligne1;
+        int colonne2 = w - 1 - colonne1;
+        
+        pixelRGB *pixel1 = get_pixel(data, w, h, n, colonne1, ligne1);
+        pixelRGB *pixel2 = get_pixel(data, w, h, n, colonne2, ligne2);
+        
+        pixelRGB temp = *pixel1;
+        *pixel1 = *pixel2;
+        *pixel2 = temp;
     }
     
-    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-     
+    write_image_data("image_out.bmp", data, w, h);
 }
 
 void scale_nearest(const char *source_path, float scale_factor) {
