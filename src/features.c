@@ -304,7 +304,7 @@ void color_green(const char *source_path) {
         int pos = (ligne * w + colonne) * 3;
         
         
-        data[pos + 1] = 0;
+        data[pos] = 0;
         data[pos + 2] = 0;
     }
 }
@@ -327,7 +327,7 @@ void color_blue(const char *source_path) {
         
         
         data[pos + 1] = 0;
-        data[pos + 2] = 0;
+        data[pos] = 0;
     }
 }
 write_image_data("image_out.bmp", data, w, h);
