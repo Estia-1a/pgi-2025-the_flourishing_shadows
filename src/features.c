@@ -279,12 +279,8 @@ void color_red(const char *source_path) {
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
-	
+	unsigned char nouvelles_donnees[w * h * 3];
+
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
             int pos = (ligne * w + colonne) * 3;
@@ -296,8 +292,6 @@ void color_red(const char *source_path) {
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
-    
-    free(nouvelles_donnees);
 }
 
 void color_green(const char *source_path) {
@@ -310,11 +304,7 @@ void color_green(const char *source_path) {
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 	
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -328,7 +318,6 @@ void color_green(const char *source_path) {
     
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
     
-    free(nouvelles_donnees);
 }
 
 void color_blue(const char *source_path) {
@@ -341,11 +330,7 @@ void color_blue(const char *source_path) {
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 	
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -358,8 +343,7 @@ void color_blue(const char *source_path) {
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
-    
-    free(nouvelles_donnees);
+
 }
 
 void color_gray(const char *source_path){
@@ -374,11 +358,7 @@ void color_gray(const char *source_path){
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -399,7 +379,6 @@ void color_gray(const char *source_path){
     
     write_image_data("image_out.jpeg", nouvelles_donnees, w, h);
     
-    free(nouvelles_donnees);
 }
 
 void color_invert(const char *source_path){
@@ -411,11 +390,7 @@ void color_invert(const char *source_path){
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 	
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -429,9 +404,6 @@ void color_invert(const char *source_path){
     
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
     
-    free(nouvelles_donnees);
-    
-
     }
 
 void color_gray_luminance(const char *source_path) {
@@ -443,12 +415,8 @@ void color_gray_luminance(const char *source_path) {
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
+    unsigned char nouvelles_donnees[w * h * 3];
     unsigned char value = 0;
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
 	
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -460,7 +428,6 @@ void color_gray_luminance(const char *source_path) {
         }
     }
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
-    free(nouvelles_donnees);
     return;
 }
 int max (int R,int G,int B) {
@@ -495,11 +462,7 @@ void color_desaturate(const char *source_path) {
         return;
     }
     
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     for (int ligne = 0; ligne < h; ligne++) {
         for (int colonne = 0; colonne < w; colonne++) {
@@ -518,7 +481,6 @@ void color_desaturate(const char *source_path) {
         }
     }
     write_image_data("image_out.bmp", nouvelles_donnees, w, h);
-    free(nouvelles_donnees);
     return;
     
 }
@@ -532,11 +494,7 @@ void rotate_cw(const char *source_path){
         return;
     }
 
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     int nvh=w;
     int nvw=h;
@@ -554,9 +512,7 @@ void rotate_cw(const char *source_path){
         }
     }
     
-    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-    
-    free(nouvelles_donnees);   
+    write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);  
 }
 
 void rotate_acw(const char *source_path){
@@ -568,11 +524,7 @@ void rotate_acw(const char *source_path){
         return;
     }
 
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     int nvh=w;
     int nvw=h;
@@ -591,8 +543,7 @@ void rotate_acw(const char *source_path){
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-    
-    free(nouvelles_donnees);   
+      
 }
 
 void mirror_vertical(const char *source_path){
@@ -604,11 +555,7 @@ void mirror_vertical(const char *source_path){
         return;
     }
 
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     int nvh=w;
     int nvw=h;
@@ -627,8 +574,6 @@ void mirror_vertical(const char *source_path){
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-    
-    free(nouvelles_donnees);   
 }
 
 void mirror_horizontal(const char *source_path){
@@ -640,12 +585,7 @@ void mirror_horizontal(const char *source_path){
         return;
     }
 
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
-
+    unsigned char nouvelles_donnees[w * h * 3];
     int nvh=w;
     int nvw=h;
 
@@ -663,8 +603,7 @@ void mirror_horizontal(const char *source_path){
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
-    
-    free(nouvelles_donnees);   
+       
 }
 
 void mirror_total(const char *source_path){
@@ -676,11 +615,7 @@ void mirror_total(const char *source_path){
         return;
     }
 
-    unsigned char *nouvelles_donnees = malloc(w * h * 3 * sizeof(unsigned char));
-    if (nouvelles_donnees == NULL) {
-        printf("pas assez de place\n");
-        return;
-    }
+    unsigned char nouvelles_donnees[w * h * 3];
 
     int nvh=w;
     int nvw=h;
@@ -699,6 +634,157 @@ void mirror_total(const char *source_path){
     }
     
     write_image_data("image_out.bmp", nouvelles_donnees, nvw, nvh);
+     
+}
+
+void scale_nearest(const char *source_path, float scale_factor) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
     
-    free(nouvelles_donnees);   
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    if (scale_factor <= 0) {
+        printf("Erreur: facteur d'échelle invalide\n");
+        return;
+    }
+    
+    int new_w = (int)(w * scale_factor);
+    int new_h = (int)(h * scale_factor);
+    
+    if (new_w <= 0 || new_h <= 0) {
+        printf("Erreur: dimensions résultantes invalides\n");
+        return;
+    }
+    
+    unsigned char nouvelles_donnees[new_w * new_h * 3];
+    
+    for (int new_y = 0; new_y < new_h; new_y++) {
+        for (int new_x = 0; new_x < new_w; new_x++) {
+            int orig_x = (int)(new_x / scale_factor);
+            int orig_y = (int)(new_y / scale_factor);
+            
+            if (orig_x >= w) orig_x = w - 1;
+            if (orig_y >= h) orig_y = h - 1;
+            
+            int orig_pos = (orig_y * w + orig_x) * 3;
+            int new_pos = (new_y * new_w + new_x) * 3;
+            
+            nouvelles_donnees[new_pos] = data[orig_pos];
+            nouvelles_donnees[new_pos + 1] = data[orig_pos + 1];
+            nouvelles_donnees[new_pos + 2] = data[orig_pos + 2];
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, new_w, new_h);
+    
+}
+
+void scale_bilinear(const char *source_path, float scale_factor) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    if (scale_factor <= 0) {
+        printf("Erreur: facteur d'échelle invalide\n");
+        return;
+    }
+    
+    int new_w = (int)(w * scale_factor);
+    int new_h = (int)(h * scale_factor);
+    
+    if (new_w <= 0 || new_h <= 0) {
+        printf("Erreur: dimensions résultantes invalides\n");
+        return;
+    }
+    
+    unsigned char nouvelles_donnees[new_w * new_h * 3];
+    
+    for (int new_y = 0; new_y < new_h; new_y++) {
+        for (int new_x = 0; new_x < new_w; new_x++) {
+            float orig_x_f = (float)new_x / scale_factor;
+            float orig_y_f = (float)new_y / scale_factor;
+            
+            int x1 = (int)orig_x_f;
+            int y1 = (int)orig_y_f;
+            int x2 = x1 + 1;
+            int y2 = y1 + 1;
+            
+            if (x2 >= w) x2 = w - 1;
+            if (y2 >= h) y2 = h - 1;
+            
+            float dx = orig_x_f - x1;
+            float dy = orig_y_f - y1;
+            
+            int pos_tl = (y1 * w + x1) * 3;
+            int pos_tr = (y1 * w + x2) * 3;
+            int pos_bl = (y2 * w + x1) * 3;
+            int pos_br = (y2 * w + x2) * 3;
+            
+            int new_pos = (new_y * new_w + new_x) * 3;
+            
+            for (int c = 0; c < 3; c++) {
+                float top = data[pos_tl + c] * (1 - dx) + data[pos_tr + c] * dx;
+                float bottom = data[pos_bl + c] * (1 - dx) + data[pos_br + c] * dx;
+                float result = top * (1 - dy) + bottom * dy;
+                
+                nouvelles_donnees[new_pos + c] = (unsigned char)result;
+            }
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, new_w, new_h);
+
+}
+
+void scale_crop(const char *source_path, int center_x, int center_y, int crop_w, int crop_h) {
+    unsigned char *data;
+    int w, h, n;
+    int resultat = read_image_data(source_path, &data, &w, &h, &n);
+    
+    if (resultat == 0 || data == NULL) {
+        printf("Erreur: impossible de lire l'image\n");
+        return;
+    }
+    
+    if (crop_w <= 0 || crop_h <= 0) {
+        printf("Erreur: dimensions de crop invalides\n");
+        return;
+    }
+    
+    unsigned char nouvelles_donnees[crop_w * crop_h * 3];
+    
+    int start_x = center_x - crop_w / 2;
+    int start_y = center_y - crop_h / 2;
+    
+    for (int crop_y = 0; crop_y < crop_h; crop_y++) {
+        for (int crop_x = 0; crop_x < crop_w; crop_x++) {
+            int orig_x = start_x + crop_x;
+            int orig_y = start_y + crop_y;
+            
+            int crop_pos = (crop_y * crop_w + crop_x) * 3;
+            
+            if (orig_x >= 0 && orig_x < w && orig_y >= 0 && orig_y < h) {
+                int orig_pos = (orig_y * w + orig_x) * 3;
+                nouvelles_donnees[crop_pos] = data[orig_pos];
+                nouvelles_donnees[crop_pos + 1] = data[orig_pos + 1];
+                nouvelles_donnees[crop_pos + 2] = data[orig_pos + 2];
+            } else {
+                nouvelles_donnees[crop_pos] = 0;
+                nouvelles_donnees[crop_pos + 1] = 0;
+                nouvelles_donnees[crop_pos + 2] = 0;
+            }
+        }
+    }
+    
+    write_image_data("image_out.bmp", nouvelles_donnees, crop_w, crop_h);
+    
 }

@@ -26,4 +26,7 @@ void rotate_acw(const char *source_path);
 void mirror_horizontal(const char *source_path);
 void mirror_vertical(const char *source_path);
 void mirror_total(const char *source_path);
+void scale_nearest(const char *source_path, float scale_factor);
+void scale_bilinear(const char *source_path, float scale_factor);
+void scale_crop(const char *source_path, int center_x, int center_y, int crop_w, int crop_h);
 #endif
