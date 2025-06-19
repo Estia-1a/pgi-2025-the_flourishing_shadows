@@ -431,36 +431,28 @@ int min(int R, int G, int B) {
 void color_desaturate(const char *source_path) {
     unsigned char *data;
     int w, h, n;
-    unsigned char r=0, g=0, b=0;
     int resultat = read_image_data(source_path, &data, &w, &h, &n);
-    int new_val = 0;
 
     if (resultat == 0 || data == NULL) {
         printf("Erreur: impossible de lire l'image\n");
         return;
     }
-    
-    unsigned char nouvelles_donnees[w * h * 3];
 
-    for (int ligne = 0; ligne < h; ligne++) {
-        for (int colonne = 0; colonne < w; colonne++) {
-            int pos = (ligne * w + colonne) * 3;
-
-            pixelRGB *current_pixel = get_pixel(data,w,h,n,colonne,ligne);
-            r = current_pixel->R;
-            g = current_pixel->G;
-            b = current_pixel->B;
-
-            new_val = ((min(r, g, b) + max(r, g, b)) / 2);
-            nouvelles_donnees[pos] = new_val;
-            nouvelles_donnees[pos + 1] = new_val;
-            nouvelles_donnees[pos + 2] = new_val; 
-
-        }
+    for (int i = 0; i < w * h; i++) {
+        int pos = i * n; 
+        
+        unsigned char r = data[pos];
+        unsigned char g = data[pos + 1];
+        unsigned char b = data[pos + 2];
+        
+        unsigned char new_val = (min(r, g, b) + max(r, g, b)) / 2;
+        
+        data[pos] = new_val;
+        data[pos + 1] = new_val;
+        data[pos + 2] = new_val;
     }
-    write_image_data("image_out.bmp", nouvelles_donnees, w, h);
-    return;
     
+    write_image_data("image_out.bmp", data, w, h);
 }
 
 void rotate_cw(const char *source_path){
